@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.liqx.java.study.spring3.persist.primary.mapper.FgsDeptMapper">
+  <resultMap id="BaseResultMap" type="top.liqx.java.study.spring3.persist.primary.model.FgsDeptModel">
+    <!--@mbg.generated-->
+    <!--@Table `fgs_dept`-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="leader_user_id" jdbcType="BIGINT" property="leaderUserId" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    `id`, `dept_name`, `leader_user_id`, `deleted`, `create_time`, `update_time`
+  </sql>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="top.liqx.java.study.spring3.persist.primary.model.FgsDeptModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `fgs_dept`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptName != null">
+        `dept_name`,
+      </if>
+      <if test="leaderUserId != null">
+        `leader_user_id`,
+      </if>
+      <if test="deleted != null">
+        `deleted`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+      <if test="updateTime != null">
+        `update_time`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderUserId != null">
+        #{leaderUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.liqx.java.study.spring3.persist.primary.model.FgsDeptModel">
+    <!--@mbg.generated-->
+    update `fgs_dept`
+    <set>
+      <if test="deptName != null">
+        `dept_name` = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderUserId != null">
+        `leader_user_id` = #{leaderUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        `deleted` = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update `fgs_dept`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`dept_name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `id` = #{item.id,jdbcType=BIGINT} then #{item.deptName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`leader_user_id` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `id` = #{item.id,jdbcType=BIGINT} then #{item.leaderUserId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`deleted` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `id` = #{item.id,jdbcType=BIGINT} then #{item.deleted,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="`create_time` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `id` = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`update_time` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `id` = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where `id` in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `fgs_dept`
+    (`dept_name`, `leader_user_id`, `deleted`, `create_time`, `update_time`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.deptName,jdbcType=VARCHAR}, #{item.leaderUserId,jdbcType=BIGINT}, #{item.deleted,jdbcType=TINYINT}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="top.liqx.java.study.spring3.persist.primary.model.FgsDeptModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `fgs_dept`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      `dept_name`,
+      `leader_user_id`,
+      `deleted`,
+      `create_time`,
+      `update_time`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{deptName,jdbcType=VARCHAR},
+      #{leaderUserId,jdbcType=BIGINT},
+      #{deleted,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        `id` = #{id,jdbcType=BIGINT},
+      </if>
+      `dept_name` = #{deptName,jdbcType=VARCHAR},
+      `leader_user_id` = #{leaderUserId,jdbcType=BIGINT},
+      `deleted` = #{deleted,jdbcType=TINYINT},
+      `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="top.liqx.java.study.spring3.persist.primary.model.FgsDeptModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `fgs_dept`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="deptName != null">
+        `dept_name`,
+      </if>
+      <if test="leaderUserId != null">
+        `leader_user_id`,
+      </if>
+      <if test="deleted != null">
+        `deleted`,
+      </if>
+      <if test="createTime != null">
+        `create_time`,
+      </if>
+      <if test="updateTime != null">
+        `update_time`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderUserId != null">
+        #{leaderUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        `id` = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deptName != null">
+        `dept_name` = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderUserId != null">
+        `leader_user_id` = #{leaderUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        `deleted` = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
