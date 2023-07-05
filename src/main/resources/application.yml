@@ -1,35 +1,14 @@
 spring:
   application:
     name: app
-  profiles:
-    include: ${spring.profiles.active}
-  datasource:
-    dynamic: true
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      # 最大连接池数量
-      maximum-pool-size: 20
-      # 最小空闲线程数量
-      minimum-idle: 10
-      # 配置获取连接等待超时的时间
-      connectionTimeout: 30000
-      # 校验超时时间
-      validationTimeout: 5000
-      # 空闲连接存活最大时间，默认10分钟
-      idleTimeout: 600000
-      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认30分钟
-      maxLifetime: 600000
-      # 连接测试query（配置检测连接是否有效）
-      connectionTestQuery: SELECT 1
-      # 多久检查一次连接的活性
-      keepalive-time: 30000
   data:
     redis:
-      cluster:
-        nodes:
-          - 192.168.110.12:7020
-          - 192.168.110.12:7021
-          - 192.168.110.12:7030
-          - 192.168.110.12:7031
-          - 192.168.110.12:7040
-          - 192.168.110.12:7041
+      host: redis.tctx.xyz
+      port: 6379
+      username:
+      password: 123456
+      lettuce:
+        pool:
+          max-active: 50
+          min-idle: 5
+          enabled: true
